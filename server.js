@@ -11,7 +11,7 @@ const app = express();
 
 // ✅ Configuração completa do CORS
 app.use(cors({
-    origin: 'https://backendautofrota.onrender.com', // Você pode trocar por seu domínio específico se preferir
+  origin: 'https://frontend-auto-frota.vercel.app', // ✅ seu domínio real
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));

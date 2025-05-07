@@ -25,7 +25,7 @@ async function registrar(req, res) {
 
     res.status(201).json(novoUsuario.rows[0]);
   } catch (err) {
-    console.error(err.message);
+    console.error('Erro ao registrar usuário:', err); // <-- imprime o erro real
     res.status(500).send('Erro ao registrar usuário');
   }
 }
