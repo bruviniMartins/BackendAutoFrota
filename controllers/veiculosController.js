@@ -111,7 +111,7 @@ async function atualizarQuilometragem(req, res) {
     for (const rev of revisoes.rows) {
       let precisaAvisar = false;
 
-      if (rev.km_revisao && (rev.km_revisao - km_atual <= 500)) {
+      if (rev.km_revisao && (rev.km_revisao - km_atual <= 1500)) {
         precisaAvisar = true;
       }
 
