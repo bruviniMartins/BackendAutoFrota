@@ -23,7 +23,7 @@ router.get('/', async (req, res) => {
     console.log('E-mail enviado: ', info.response);
     res.send('✅ E-mail de teste enviado com sucesso!');
   } catch (err) {
-    console.error('❌ Erro ao enviar e-mail de teste:', err);
+    console.error('❌ Erro detalhado:', err.response || err.message || err);
     res.status(500).send('Erro ao enviar e-mail de teste.');
   }
 });
