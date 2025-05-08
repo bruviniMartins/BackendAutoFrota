@@ -6,6 +6,7 @@ const veiculosRoutes = require('./routes/veiculos');
 const authRoutes = require('./routes/auth');
 const revisoesRoutes = require('./routes/revisoes');
 const servicosRoutes = require('./routes/servicos');
+const testeEmailRoute = require('./routes/testeEmail');
 
 const app = express();
 
@@ -19,10 +20,11 @@ app.use(cors({
 app.use(express.json());
 
 // Rotas
-app.use('/veiculos', veiculosRoutes);
-app.use('/auth', authRoutes);
-app.use('/revisoes', revisoesRoutes);
-app.use('/servicos', servicosRoutes);
+app.use('/veiculos', veiculosRoutes); // Rota de veículos
+app.use('/auth', authRoutes); // Rota de autenticação
+app.use('/revisoes', revisoesRoutes); // Rota de revisões
+app.use('/teste-email', testeEmailRoute); // Rota de teste de e-mail
+app.use('/servicos', servicosRoutes); // Rota de serviços
 
 // Iniciar servidor
 const PORT = process.env.PORT || 3000;
