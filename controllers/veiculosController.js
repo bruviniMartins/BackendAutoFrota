@@ -37,7 +37,7 @@ const revisoesPadrao = [
 
 // Função para cadastrar veículo
 async function cadastrarVeiculo(req, res) {
-  const { placa, marca, modelo, ano, km_atual, email_contato, categoria, uso_terreno } = req.body;
+  const { placa, marca, modelo, ano, km_atual, email_contato, terreno, categoria, uso_terreno } = req.body;
   const usuario_id = req.usuario.id;
 
   try {
