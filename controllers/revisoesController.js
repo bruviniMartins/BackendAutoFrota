@@ -17,7 +17,7 @@ const intervalosPadrao = {
 // Marcar revisão como realizada e gerar próxima
 async function realizarRevisao(req, res) {
   const { id } = req.params;
-  const { data_realizada, km_realizado, tipo_realizado } = req.body;
+  const { data_realizada, km_realizado, tipo_realizado, qualidade, terreno } = req.body;
 
   try {
     // Atualizar a revisão como realizada
@@ -37,12 +37,27 @@ async function realizarRevisao(req, res) {
       let km_revisao = null;
       let data_revisao_prevista = null;
 
+      // ✅ Fator de qualidade dos produtos usados
+      let fatorQualidade = 1;
+      if (qualidade === 'alta') fatorQualidade = 1.2;   // +20%
+      if (qualidade === 'baixa') fatorQualidade = 0.7;  // -30%
+
+      // ✅ Fator de uso do terreno
+      let fatorTerreno = 1;
+      if (terreno === 'ruim') fatorTerreno = 0.6;        // -40%
+      if (terreno === 'normal') fatorTerreno = 0.9;      // -10%
+      if (terreno === 'bom') fatorTerreno = 1.1;         // +10%
+
+      // ✅ Fator final combinado
+      const fatorFinal = fatorQualidade * fatorTerreno;
+
       if (intervalo.km) {
-        km_revisao = Number(km_realizado) + intervalo.km;
+        km_revisao = Math.round(Number(km_realizado) + intervalo.km * fatorFinal);
       }
+
       if (intervalo.meses) {
         const data = new Date();
-        data.setMonth(data.getMonth() + intervalo.meses);
+        data.setMonth(data.getMonth() + Math.round(intervalo.meses * fatorFinal));
         data_revisao_prevista = data;
       }
 

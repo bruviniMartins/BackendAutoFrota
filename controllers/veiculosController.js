@@ -37,12 +37,12 @@ const revisoesPadrao = [
 
 // Função para cadastrar veículo
 async function cadastrarVeiculo(req, res) {
-  const { placa, marca, modelo, ano, km_atual, email_contato, categoria } = req.body;
+  const { placa, marca, modelo, ano, km_atual, email_contato, categoria, terreno } = req.body;
   const usuario_id = req.usuario.id;
 
   try {
     const novoVeiculo = await pool.query(
-      'INSERT INTO veiculos (placa, marca, modelo, ano, km_atual, email_contato, categoria, usuario_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *',
+      'INSERT INTO veiculos (placa, marca, modelo, ano, km_atual, email_contato, categoria, terreno, usuario_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *',
       [placa, marca, modelo, ano, km_atual, email_contato, categoria, usuario_id]
     );
 
